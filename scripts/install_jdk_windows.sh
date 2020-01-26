@@ -33,3 +33,6 @@ function jdk11() {
   rm openjdk11.zip
   mv jdk-11.0.2 openjdk11
 }
+
+jdk11
+jdk14
