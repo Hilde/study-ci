@@ -6,17 +6,14 @@ jobs:
       install:
         - scripts/install_jdk_windows.sh
         - export JAVA_HOME=$HOME/jdk-13
+        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14
         - bash -x ./scripts/install_openjfx.sh windows
     - os: osx
       install:
-        - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh && chmod +x install-jdk.sh
-        - ./install-jdk.sh --feature 13 --target $HOME/jdk-13
-        - ./install-jdk.sh --target $HOME/jdk-14 --url "https://download.java.net/java/early_access/jdk14/33/GPL/openjdk-14-ea+33_osx-x64_bin.tar.gz"
-        - ls -l $HOME/jdk-14/bin
-        - export JAVA_HOME=$HOME/jdk-13
+        - scripts/install_jdk_mac.sh
+        - export JAVA_HOME=$HOME/jdk-13.jdk/Contents/Home
+        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14.jdk/Contents/Home
         - bash -x ./scripts/install_openjfx.sh mac
 
 script:
-  - export JAVA_HOME=$HOME/jdk-13
-  - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14
   - ./gradlew build jpackage
