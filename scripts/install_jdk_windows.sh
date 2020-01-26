@@ -8,7 +8,7 @@ function jdk14() {
     exit 1
   fi
 
-  7z e openjdk14.zip
+  unzip openjdk14.zip
   if [ $? -ne 0 ]; then
     echo JDK extracting failed.
     exit 1
@@ -25,7 +25,7 @@ function jdk11() {
     exit 1
   fi
 
-  7z e openjdk11.zip
+  unzip openjdk11.zip
   if [ $? -ne 0 ]; then
     echo JDK extracting failed.
     exit 1
