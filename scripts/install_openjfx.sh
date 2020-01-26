@@ -18,14 +18,12 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ "$OS" == "windows" ]; then
-  7z e openjfx-jmods.zip
+  7z e openjfx-jmods.zip -o $HAVA_HOME/jmods
 else
   unzip openjfx-jmods.zip
+  mv javafx-jmods-${VERSION}/*.jmod $JAVA_HOME/jmods/
 fi
 if [ $? -ne 0 ]; then
   echo OpenJFX extracting failed.
   exit 1
 fi
-
-ls -l
-mv javafx-jmods-${VERSION}/* $JAVA_HOME/jmods/
