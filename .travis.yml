@@ -13,10 +13,10 @@ jobs:
     - os: osx
       install:
         - scripts/install_jdk_mac.sh
-        - export JAVA_HOME=$HOME/jdk-13.jdk/Contents/Home
+        - export JAVA_HOME=$HOME/jdk-13/Contents/Home
         - ls $JAVA_HOME/bin
         - ls $JAVA_HOME/jmods
-#        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14.jdk/Contents/Home
+#        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
 #        - bash -x ./scripts/install_openjfx.sh mac
 
 script:

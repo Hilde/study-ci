@@ -14,7 +14,7 @@ function jdk14() {
     exit 1
   fi
   rm openjdk14.tgz
-#  mv jdk-14.jdk jdk-14
+  mv jdk-14.jdk $HOME/jdk-14
 }
 
 function jdk13() {
@@ -31,7 +31,7 @@ function jdk13() {
     exit 1
   fi
   rm openjdk13.tgz
-  mv jdk-13.0.2.jdk jdk-13.jdk
+  mv jdk-13.0.2.jdk $HOME/jdk-13
 }
 
 jdk13
