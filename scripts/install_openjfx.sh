@@ -27,4 +27,4 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-mv javafx-jmods-${VERSION}/*.jmod $JAVA_HOME/jmods/
+mv javafx-jmods-${VERSION}/* $JAVA_HOME/jmods/
