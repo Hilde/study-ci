@@ -5,16 +5,15 @@ jobs:
     - os: windows
       install:
         - scripts/install_jdk_windows.sh
-        - mkdir -p openjdk11/jmods
-        - export JAVA_HOME=$HOME/openjdk11
+        - export JAVA_HOME=$HOME/openjdk13
         - bash -x ./scripts/install_openjfx.sh windows
     - os: osx
       install:
         - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh && chmod +x install-jdk.sh
-        - ./install-jdk.sh --feature 11 --target $HOME/openjdk11
+        - ./install-jdk.sh --feature 13 --target $HOME/openjdk13
         - ./install-jdk.sh --target $HOME/openjdk14 --url "https://download.java.net/java/early_access/jdk14/33/GPL/openjdk-14-ea+33_osx-x64_bin.tar.gz"
-        - ls -l $HOME/openjdk14
-        - export JAVA_HOME=$HOME/openjdk11
+        - ls -l $HOME/openjdk14/bin
+        - export JAVA_HOME=$HOME/openjdk13
         - bash -x ./scripts/install_openjfx.sh mac
 
 script:

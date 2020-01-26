@@ -17,22 +17,22 @@ function jdk14() {
   mv jdk-14 openjdk14
 }
 
-function jdk11() {
-  URL="https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_windows-x64_bin.zip"
-  curl -L -o openjdk11.zip $URL
+function jdk13() {
+  URL="https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d882ca7/8/GPL/openjdk-13.0.2_windows-x64_bin.zip"
+  curl -L -o openjdk13.zip $URL
   if [ $? -ne 0 ]; then
     echo JDK downloading failed from $URL
     exit 1
   fi
 
-  unzip openjdk11.zip
+  unzip openjdk13.zip
   if [ $? -ne 0 ]; then
     echo JDK extracting failed.
     exit 1
   fi
-  rm openjdk11.zip
-  mv jdk-11.0.2 openjdk11
+  rm openjdk13.zip
+  mv jdk-13.0.2 openjdk13
 }
 
-jdk11
+jdk13
 jdk14
