@@ -4,16 +4,15 @@ jobs:
   include:
     - os: windows
       install:
-#        - scripts/install_jdk_windows.sh
+        - scripts/install_jdk_windows.sh
         - mkdir -p openjdk11/jmods
         - export JAVA_HOME=$HOME/openjdk11
         - bash -x ./scripts/install_openjfx.sh windows
     - os: osx
       install:
-#        - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh && chmod +x install-jdk.sh
-#        - ./install-jdk.sh --feature 11 --target $HOME/openjdk11
-#        - ./install-jdk.sh --feature 14 --target $HOME/openjdk14
-        - mkdir -p openjdk11/jmods
+        - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh && chmod +x install-jdk.sh
+        - ./install-jdk.sh --feature 11 --target $HOME/openjdk11
+        - ./install-jdk.sh --feature 14 --target $HOME/openjdk14
         - export JAVA_HOME=$HOME/openjdk11
         - bash -x ./scripts/install_openjfx.sh mac
 
