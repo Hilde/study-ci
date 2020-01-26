@@ -14,7 +14,7 @@ function jdk14() {
     exit 1
   fi
   rm openjdk14.zip
-  mv jdk-14 openjdk14
+#  mv jdk-14 openjdk14
 }
 
 function jdk13() {
@@ -31,7 +31,7 @@ function jdk13() {
     exit 1
   fi
   rm openjdk13.zip
-  mv jdk-13.0.2 openjdk13
+  mv jdk-13.0.2 jdk-13
 }
 
 jdk13
