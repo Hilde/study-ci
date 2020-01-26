@@ -6,14 +6,14 @@ jobs:
       install:
         - scripts/install_jdk_windows.sh
         - export JAVA_HOME=$HOME/openjdk11
-        - ./scripts/install_openjfx.sh
+        - bash -x ./scripts/install_openjfx.sh
     - os: osx
       install:
         - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh && chmod +x install-jdk.sh
         - ./install-jdk.sh --feature 11 --target $HOME/openjdk11
         - ./install-jdk.sh --feature 14 --target $HOME/openjdk14
         - export JAVA_HOME=$HOME/openjdk11
-        - ./scripts/install_openjfx.sh
+        - basg -x ./scripts/install_openjfx.sh
 
 script:
   - export JAVA_HOME=$HOME/openjdk11

@@ -18,7 +18,7 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ "$OS" == "windows" ]; then
-  7z e openjfx-jmodz.zip
+  7z e openjfx-jmods.zip
 else
   unzip openjfx-jmods.zip
 fi
