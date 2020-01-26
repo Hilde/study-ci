@@ -1,6 +1,16 @@
 language: java
-jdk:
-  - openjdk11
-sudo: false
+jdk: openjdk11
+os:
+  - windows
+  - osx
+
+install:
+  - if [ $TRAVIS_OS_NAME = windows ]; then choco install wixtoolset; fi
+  - source $TRAVIS_BUILD_DIR/install-jdk.sh --install openjdk14 --target $HOME/openjdk14
+  - jdk_switcher use openjdk11
+  - source ./scripts/install_openjfx.sh
+
 script:
-  - ./gradlew build
+  - jdk_switcher use openjdk11
+  - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/openjdk14
+  - ./gradlew build jpackage
