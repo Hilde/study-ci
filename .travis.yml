@@ -20,4 +20,4 @@ jobs:
         - bash -x ./scripts/install_openjfx.sh mac $HOME/jdk-14/Contents/Home
 
 script:
-  - ./gradlew build jpackage
+  - ./gradlew jre --debug --stacktrace
