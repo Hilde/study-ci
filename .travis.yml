@@ -1,27 +1,32 @@
 language: shell
-
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 jobs:
   include:
-    - os: windows
-      install:
-        - scripts/install_jdk_windows.sh
-        - export JAVA_HOME=$HOME/jdk-13
-        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14
-        - ./scripts/install_openjfx.sh windows
-    - os: osx
-      install:
-        - scripts/install_jdk_mac.sh
-        - export JAVA_HOME=$HOME/jdk-13/Contents/Home
-        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
-        - ./scripts/install_openjfx.sh mac
-
+  - os: windows
+    install:
+    - scripts/install_jdk_windows.sh
+    - export JAVA_HOME=$HOME/jdk-13
+    - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14
+    - "./scripts/install_openjfx.sh windows"
+  - os: osx
+    install:
+    - scripts/install_jdk_mac.sh
+    - export JAVA_HOME=$HOME/jdk-13/Contents/Home
+    - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
+    - "./scripts/install_openjfx.sh mac"
 script:
-  - ./gradlew jar jpackage --no-daemon
+- "./gradlew jar jpackage --no-daemon"
+deploy:
+  provider: releases
+  api_key:
+    secure: p09+38Z9fTKMUVwzhmyV03ooSQ3bUuDxp/cogIrBmdzbXSI3TWEMMhE/al3Ybk545bphxe/nDF95LlAfyqkRdiFHuRX4mAGboSJy7rjEdSR2lPk9KXMa0F70FRdKRHrotneHTaCU7P5GGPff5gxhhQg3M83B+3+vh3bgTEp/Vp4cbrHKcRkS1hKxFBTutCFBNFzRKGBJw3lAmiEJrw13k7uN3SSyUuoOoKntbjsmG5nz70QWUy07qhxupylVitEJyJOhnjeXU9iAB9IIgetW6Hruc9dyW0oZ9n2qM/JRE0lx6Q5kR+SWI7MwX9fp4GlJQ4z6d8DnZLKRGCOUUwQwqO/gQfx/n9M0UFeLP/u805YPb1AX071G1iCqBvfcJmdakCUF3jngC27Ao9BYaxslK18xWCCbYhqstroB1amYd8VyIN1hkmqsLzSQuBGs4eVTN35HG41Zl9zuPhYLfSuXMs759wWgx6ytfdPX9tw7IcRQZaSSqtHO7DNoxskMJJwjVnytGTGClgrqSrnD4EFmrxcDTw2fwM7xoENyImlMbEfqrq2PqwcVIuO7M0eZR597fKnL8LZJcS7qNGrZmal0U4YucFwZmwsvreOfsaZG/MC8Rx0uq8j75T4wuWqZJKjcWBAkEqinFndMJ9VevgiFprYzHgYs0y/EuTBVeB57Q7Q=
+  file: 'build/distributions/HelloWorld-*'
+  on:
+    repo: Hilde/study-ci
+    branch: develop
