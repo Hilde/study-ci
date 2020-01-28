@@ -1,21 +1,27 @@
 language: shell
 
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
 jobs:
   include:
     - os: windows
       install:
         - scripts/install_jdk_windows.sh
         - export JAVA_HOME=$HOME/jdk-13
-        - bash -x ./scripts/install_openjfx.sh windows
-        - ls $JAVA_HOME/jmods
         - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14
+        - ./scripts/install_openjfx.sh windows
     - os: osx
       install:
         - scripts/install_jdk_mac.sh
         - export JAVA_HOME=$HOME/jdk-13/Contents/Home
-        - bash -x ./scripts/install_openjfx.sh mac
-        - ls $JAVA_HOME/jmods
         - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
+        - ./scripts/install_openjfx.sh mac
 
 script:
   - ./gradlew jar jpackage --no-daemon
