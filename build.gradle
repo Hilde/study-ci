@@ -64,6 +64,7 @@ runtime {
         outputDir = 'installers'
         imageName = 'HelloFX'
         skipInstaller = true
+        imageOptions = ['--module-path', "$projectDir/javafx-jmods"]
 //        switch (platform) {
 //            case 'mac':
 //                imageOptions = ['--icon', "$buildDir/resources/main/icons/appicon.icns"]
