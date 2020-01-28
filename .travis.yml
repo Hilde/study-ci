@@ -5,19 +5,19 @@ jobs:
     - os: windows
       install:
         - scripts/install_jdk_windows.sh
-        - export JAVA_HOME=$HOME/jdk-13
+        - export JAVA_HOME=$HOME/jdk-14
         - ls $JAVA_HOME/bin
         - ls $JAVA_HOME/jmods
-#        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14
-#        - bash -x ./scripts/install_openjfx.sh windows
+        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14
+        - bash -x ./scripts/install_openjfx.sh windows
     - os: osx
       install:
         - scripts/install_jdk_mac.sh
-        - export JAVA_HOME=$HOME/jdk-13/Contents/Home
+        - export JAVA_HOME=$HOME/jdk-14/Contents/Home
         - ls $JAVA_HOME/bin
         - ls $JAVA_HOME/jmods
-#        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
-#        - bash -x ./scripts/install_openjfx.sh mac
+        - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
+        - bash -x ./scripts/install_openjfx.sh mac
 
 script:
   - ./gradlew build jpackage
