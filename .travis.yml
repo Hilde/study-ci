@@ -6,18 +6,16 @@ jobs:
       install:
         - scripts/install_jdk_windows.sh
         - export JAVA_HOME=$HOME/jdk-13
-        - ls $JAVA_HOME/bin
+        - bash -x ./scripts/install_openjfx.sh windows
         - ls $JAVA_HOME/jmods
         - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14
-        - bash -x ./scripts/install_openjfx.sh windows $HOME/jdk-14
     - os: osx
       install:
         - scripts/install_jdk_mac.sh
         - export JAVA_HOME=$HOME/jdk-13/Contents/Home
-        - ls $JAVA_HOME/bin
+        - bash -x ./scripts/install_openjfx.sh mac
         - ls $JAVA_HOME/jmods
         - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
-        - bash -x ./scripts/install_openjfx.sh mac $HOME/jdk-14/Contents/Home
 
 script:
   - ./gradlew jre --debug --stacktrace

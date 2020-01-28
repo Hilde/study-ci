@@ -23,4 +23,4 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 rm openjfx-jmods.zip
-mv javafx-jmods-${VERSION} $HOME/javafx-jmods
+mv javafx-jmods-${VERSION}/*.jmod $JAVA_HOME/jmods/

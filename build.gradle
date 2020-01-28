@@ -57,14 +57,13 @@ jar {
 }
 
 runtime {
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages', '--module-path', System.getenv()['HOME'] + '/javafx-jmods']
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     modules = ['java.naming', 'javafx.base', 'javafx.controls', 'javafx.fxml']
 
     jpackage {
         outputDir = 'installers'
         imageName = 'HelloFX'
         skipInstaller = true
-        imageOptions = []
 //        switch (platform) {
 //            case 'mac':
 //                imageOptions = ['--icon', "$buildDir/resources/main/icons/appicon.icns"]
