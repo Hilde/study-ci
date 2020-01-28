@@ -18,4 +18,4 @@ jobs:
         - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
 
 script:
-  - ./gradlew jre --debug --stacktrace
+  - ./gradlew jar jpackage --no-daemon
