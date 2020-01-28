@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 OS=$1
+TARGET=$2
 VERSION="13.0.2"
 #SHA256_WIN="d7faba0bb3599ec5b14f8f9838ee35551bc81d2126f6f07ba06ae1ed66c5bbca"
 #SHA256_MAC="8c1bc1fbc983b2b08a19f3c306b10b0de3033a978fd08e86917ccbe080c88d0e"
@@ -23,4 +24,4 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 rm openjfx-jmods.zip
-mv javafx-jmods-${VERSION}/*.jmod $JAVA_HOME/jmods
+mv javafx-jmods-${VERSION}/*.jmod $TARGET/jmods

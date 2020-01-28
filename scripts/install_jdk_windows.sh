@@ -17,4 +17,22 @@ function jdk14() {
   mv jdk-14 $HOME/jdk-14
 }
 
+function jdk13() {
+  URL="https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d882ca7/8/GPL/openjdk-13.0.2_windows-x64_bin.zip"
+  curl -L -o openjdk13.zip $URL
+  if [ $? -ne 0 ]; then
+    echo JDK downloading failed from $URL
+    exit 1
+  fi
+
+  unzip openjdk13.zip
+  if [ $? -ne 0 ]; then
+    echo JDK extracting failed.
+    exit 1
+  fi
+  rm openjdk13.zip
+  mv jdk-13.0.2 $HOME/jdk-13
+}
+
+jdk13
 jdk14
