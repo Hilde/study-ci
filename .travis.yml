@@ -24,7 +24,7 @@ script:
 
 before_deploy:
   - "./gradlew zip --no-daemon"
-  - "ls $HOME/build/distributions/
+  - "ls $HOME/build/distributions/"
 
 #deploy:
 #  provider: releases
