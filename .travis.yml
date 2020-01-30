@@ -22,7 +22,7 @@ jobs:
     - "./scripts/install_openjfx.sh mac"
 script:
   - "./gradlew zip --no-daemon"
-  - ls./build/distributions/
+  - ls ./build/distributions/
 
 #before_deploy:
 #
