@@ -14,18 +14,28 @@ version = {
     def tags = grgit.tag.list().collect { it.getName() }
     def versionStr
     if (tags.any { it ==~ /v\d.*/ }) {
-        versionStr = grgit.describe(longDescr: false, tags: true, match: ["v[0-9]*"])
-            .replaceFirst(/^v/, "")
+        versionStr = grgit.describe(tags: true, match: ["v[0-9]*"])
+                .replaceFirst(/^v/, "")
     } else {
-        versionStr = grgit.head().abbreviatedId
+        versionStr = "0.0.0"
     }
-    return versionStr + (grgit.status().isClean() ? "" : "+dirty")
+    return versionStr
 }()
 
-task showVersion {
-    doLast {
-        println version
-    }
+buildConfig {
+    def buildNumber = {
+        def tags = grgit.tag.list().collect { it.getName() }
+        def versionStr
+        if (tags.any { it ==~ /v\d.*/ }) {
+            versionStr = grgit.describe(longDescr: false, tags: true, match: ["v[0-9]*"])
+        } else {
+            versionStr = grgit.head().abbreviatedId
+        }
+        return versionStr + (grgit.status().isClean() ? "" : "+dirty")
+    }()
+
+    buildConfigField 'String', 'BUILD_NUMBER', buildNumber
+
 }
 
 repositories {
