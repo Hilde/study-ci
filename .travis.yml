@@ -41,4 +41,4 @@ deploy:
   file: './build/distributions/HelloWorld-*'
   on:
     repo: Hilde/study-ci
-    branch: develop
+    tags: true
