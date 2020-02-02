@@ -10,32 +10,10 @@ plugins {
 }
 
 group "info.hildegynoid.study"
-version = {
-    def tags = grgit.tag.list().collect { it.getName() }
-    def versionStr
-    if (tags.any { it ==~ /v\d.*/ }) {
-        versionStr = grgit.describe(tags: true, match: ["v[0-9]*"])
-                .replaceFirst(/^v/, "")
-    } else {
-        versionStr = "0.0.0"
-    }
-    return versionStr
-}()
+version = gitVersion()
 
 buildConfig {
-    def buildNumber = {
-        def tags = grgit.tag.list().collect { it.getName() }
-        def versionStr
-        if (tags.any { it ==~ /v\d.*/ }) {
-            versionStr = grgit.describe(longDescr: false, tags: true, match: ["v[0-9]*"])
-        } else {
-            versionStr = grgit.head().abbreviatedId
-        }
-        return versionStr + (grgit.status().isClean() ? "" : "+dirty")
-    }()
-
-    buildConfigField 'String', 'BUILD_NUMBER', buildNumber
-
+    buildConfigField 'String', 'BUILD_NUMBER', gitBuildNumber()
 }
 
 repositories {
@@ -115,4 +93,31 @@ task zip(type: Zip, dependsOn: jpackage) {
             into "HelloFX"
             break
     }
+}
+
+String gitVersion() {
+    def tags = grgit.tag.list().collect { it.getName() }
+    def versionStr
+    if (tags.any { it ==~ /v\d.*/ }) {
+        def build = grgit.describe(tags: true, match: ["v[0-9]*"])
+        if (build.indexOf("-") > 1) {
+            versionStr = build.substring(1, build.indexOf("-"))
+        } else {
+            versionStr = build.substring(1)
+        }
+    } else {
+        versionStr = "0.0.0"
+    }
+    return versionStr
+}
+
+String gitBuildNumber() {
+    def tags = grgit.tag.list().collect { it.getName() }
+    def versionStr
+    if (tags.any { it ==~ /v\d.*/ }) {
+        versionStr = grgit.describe(longDescr: false, tags: true, match: ["v[0-9]*"])
+    } else {
+        versionStr = grgit.head().abbreviatedId
+    }
+    return versionStr + (grgit.status().isClean() ? "" : "+dirty")
 }
