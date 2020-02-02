@@ -15,11 +15,18 @@ version = {
     def versionStr
     if (tags.any { it ==~ /v\d.*/ }) {
         versionStr = grgit.describe(longDescr: false, tags: true, match: ["v[0-9]*"])
+            .replaceFirst(/^v/, "")
     } else {
         versionStr = grgit.head().abbreviatedId
     }
     return versionStr + (grgit.status().isClean() ? "" : "+dirty")
 }()
+
+task showVersion {
+    doLast {
+        println version
+    }
+}
 
 repositories {
     mavenCentral()
