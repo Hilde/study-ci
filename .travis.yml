@@ -26,10 +26,10 @@ jobs:
     - export BADASS_RUNTIME_JPACKAGE_HOME=$HOME/jdk-14/Contents/Home
     - "./scripts/install_openjfx.sh mac"
 
-install: "./gradlew assemble --no-daemon"
+install: ./gradlew assemble --no-daemon
 
-before_deploy:
-  - "./gradlew zip --no-daemon"
+script:
+  - ./gradlew zip --no-daemon
   - ls ./build/distributions/
 
 deploy:
