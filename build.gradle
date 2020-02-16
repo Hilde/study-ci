@@ -83,6 +83,7 @@ runtime {
 
 task zip(type: Zip, dependsOn: jpackage) {
     archiveFileName = "HelloWorld-v${project.version}-${platform}.zip"
+    destinationDirectory = file("$buildDir/archives")
     switch (platform) {
         case 'mac':
             from "build/installers/HelloFX.app"
